@@ -22,7 +22,6 @@ from ansible import utils
 from ansible import errors
 import os
 import shlex
-import yaml
 import collections
 from play import Play
 
@@ -145,6 +144,7 @@ class PlayBook(object):
                             extra_vars=mv,
                             callbacks=self.callbacks,
                             runner_callbacks=self.runner_callbacks,
+                            module_path=self.module_path,
                             stats=self.stats)
                     accumulated_plays.append(play)
                     play_basedirs.append(play.basedir)
