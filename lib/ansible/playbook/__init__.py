@@ -118,7 +118,7 @@ class PlayBook(object):
 
     # *****************************************************
 
-    def _load_playbook_from_file(self, path, extvars={}):
+    def _load_playbook_from_file(self, path):
         '''
         run top level error checking on playbooks and allow them to include other playbooks.
         '''
@@ -136,7 +136,7 @@ class PlayBook(object):
             if 'include' in play:
                 if len(play.keys()) == 1:
                     tokens = shlex.split(play['include'])
-                    mv = extvars.copy()
+                    mv = self.extra_vars.copy()
                     for t in tokens[1:]:
                         (k,v) = t.split("=", 1)
                         mv[k] = utils.varReplaceWithItems(self.basedir, v, mv)
